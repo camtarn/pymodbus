@@ -1,10 +1,6 @@
 pymodbus\.client package
 ========================
 
-.. automodule:: pymodbus.client
-    :members:
-    :undoc-members:
-    :show-inheritance:
 
 Subpackages
 -----------

@@ -28,6 +28,7 @@ class BaseModbusAsyncClientProtocol(AsyncModbusClientMixin):
     async def execute(self, request=None):
         """
         Executes requests asynchronously
+
         :param request:
         :return:
         """
@@ -40,6 +41,7 @@ class BaseModbusAsyncClientProtocol(AsyncModbusClientMixin):
         Called when a connection is made.
 
         The transport argument is the transport representing the connection.
+
         :param transport:
         :return:
         """
@@ -54,6 +56,7 @@ class BaseModbusAsyncClientProtocol(AsyncModbusClientMixin):
         Called when the connection is lost or closed.
 
         The argument is either an exception object or None
+
         :param reason:
         :return:
         """
@@ -67,6 +70,7 @@ class BaseModbusAsyncClientProtocol(AsyncModbusClientMixin):
         """
         Called when some data is received.
         data is a non-empty bytes object containing the incoming data.
+
         :param data:
         :return:
         """
@@ -75,6 +79,7 @@ class BaseModbusAsyncClientProtocol(AsyncModbusClientMixin):
     def create_future(self):
         """
         Helper function to create asyncio Future object
+
         :return:
         """
         return asyncio.Future()
@@ -82,6 +87,7 @@ class BaseModbusAsyncClientProtocol(AsyncModbusClientMixin):
     def resolve_future(self, f, result):
         """
         Resolves the completed future and sets the result
+
         :param f:
         :param result:
         :return:
@@ -92,6 +98,7 @@ class BaseModbusAsyncClientProtocol(AsyncModbusClientMixin):
     def raise_future(self, f, exc):
         """
         Sets exception of a future if not done
+
         :param f:
         :param exc:
         :return:
@@ -198,6 +205,7 @@ class ModbusClientProtocol(BaseModbusAsyncClientProtocol, asyncio.Protocol):
         """
         Called when some data is received.
         data is a non-empty bytes object containing the incoming data.
+
         :param data:
         :return:
         """
@@ -237,6 +245,7 @@ class ReconnectingAsyncioModbusTcpClient(object):
     def __init__(self, protocol_class=None, loop=None, **kwargs):
         """
         Initialize ReconnectingAsyncioModbusTcpClient
+
         :param protocol_class: Protocol used to talk to modbus device.
         :param loop: Event loop to use
         """
@@ -263,6 +272,7 @@ class ReconnectingAsyncioModbusTcpClient(object):
     def start(self, host, port=502):
         """
         Initiates connection to start client
+
         :param host:
         :param port:
         :return:
@@ -278,6 +288,7 @@ class ReconnectingAsyncioModbusTcpClient(object):
     def stop(self):
         """
         Stops client
+
         :return:
         """
         # prevent reconnect:
@@ -354,6 +365,7 @@ class AsyncioModbusTcpClient(object):
     def __init__(self, host=None, port=502, protocol_class=None, loop=None, **kwargs):
         """
         Initializes Asyncio Modbus Tcp Client
+
         :param host: Host IP address
         :param port: Port to connect
         :param protocol_class: Protocol used to talk to modbus device.
@@ -444,6 +456,7 @@ class ReconnectingAsyncioModbusTlsClient(ReconnectingAsyncioModbusTcpClient):
     def __init__(self, protocol_class=None, loop=None, framer=None, **kwargs):
         """
         Initialize ReconnectingAsyncioModbusTcpClient
+
         :param protocol_class: Protocol used to talk to modbus device.
         :param loop: Event loop to use
         """
@@ -454,6 +467,7 @@ class ReconnectingAsyncioModbusTlsClient(ReconnectingAsyncioModbusTcpClient):
     def start(self, host, port=802, sslctx=None, server_hostname=None):
         """
         Initiates connection to start client
+
         :param host:
         :param port:
         :param sslctx:
@@ -511,6 +525,7 @@ class ReconnectingAsyncioModbusUdpClient(object):
     def __init__(self, protocol_class=None, loop=None, **kwargs):
         """
         Initializes ReconnectingAsyncioModbusUdpClient
+
         :param protocol_class: Protocol used to talk to modbus device.
         :param loop: Asyncio Event loop
         """
@@ -538,6 +553,7 @@ class ReconnectingAsyncioModbusUdpClient(object):
     def start(self, host, port=502):
         """
         Start reconnecting asynchronous udp client
+
         :param host: Host IP to connect
         :param port: Host port to connect
         :return:
@@ -561,6 +577,7 @@ class ReconnectingAsyncioModbusUdpClient(object):
     def stop(self):
         """
         Stops connection and prevents reconnect
+
         :return:
         """
         # prevent reconnect:
@@ -643,6 +660,7 @@ class AsyncioModbusUdpClient(object):
     def __init__(self, host=None, port=502, protocol_class=None, loop=None, **kwargs):
         """
         Initializes Asyncio Modbus UDP Client
+
         :param host: Host IP address
         :param port: Port to connect
         :param protocol_class: Protocol used to talk to modbus device.
@@ -664,6 +682,7 @@ class AsyncioModbusUdpClient(object):
     def stop(self):
         """
         Stops connection
+
         :return:
         """
         # prevent reconnect:
@@ -745,6 +764,7 @@ class AsyncioModbusSerialClient(object):
                  baudrate=9600, bytesize=8, parity='N', stopbits=1, **serial_kwargs):
         """
         Initializes Asyncio Modbus Serial Client
+
         :param port: Port to connect
         :param protocol_class: Protocol used to talk to modbus device.
         :param framer: Framer to use
@@ -768,6 +788,7 @@ class AsyncioModbusSerialClient(object):
     def stop(self):
         """
         Stops connection
+
         :return:
         """
         if self._connected:
@@ -788,6 +809,7 @@ class AsyncioModbusSerialClient(object):
     def connect(self):
         """
         Connect Async client
+
         :return:
         """
         _logger.debug('Connecting.')
@@ -838,6 +860,7 @@ class AsyncioModbusSerialClient(object):
 def init_tcp_client(proto_cls, loop, host, port, **kwargs):
     """
     Helper function to initialize tcp client
+
     :param proto_cls:
     :param loop:
     :param host:
@@ -856,6 +879,7 @@ def init_tls_client(proto_cls, loop, host, port, sslctx=None,
                     server_hostname=None, framer=None, **kwargs):
     """
     Helper function to initialize tcp client
+
     :param proto_cls:
     :param loop:
     :param host:
@@ -877,6 +901,7 @@ def init_tls_client(proto_cls, loop, host, port, sslctx=None,
 def init_udp_client(proto_cls, loop, host, port, **kwargs):
     """
     Helper function to initialize UDP client
+
     :param proto_cls:
     :param loop:
     :param host:

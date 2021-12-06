@@ -146,6 +146,7 @@ class ModbusClientProtocol(protocol.Protocol,
     def close(self):
         """
         Closes underlying transport layer ,essentially closing the client
+
         :return: 
         """
         if self.transport and hasattr(self.transport, "close"):

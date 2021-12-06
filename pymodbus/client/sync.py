@@ -127,6 +127,7 @@ class BaseModbusClient(ModbusClientMixin):
     def idle_time(self):
         """
         Bus Idle Time to initiate next transaction
+
         :return: time stamp
         """
         if self.last_frame_end is None or self.silent_interval is None:
@@ -161,6 +162,7 @@ class BaseModbusClient(ModbusClientMixin):
     def register(self, function):
         """
         Registers a function and sub function class with the decoder
+
         :param function: Custom function class to register
         :return:
         """

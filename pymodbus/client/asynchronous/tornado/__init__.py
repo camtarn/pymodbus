@@ -42,6 +42,7 @@ class BaseTornadoClient(AsyncModbusClientMixin):
         """
         Initializes BaseTornadoClient.
         ioloop to be passed as part of kwargs ('ioloop')
+
         :param args:
         :param kwargs:
         """
@@ -75,6 +76,7 @@ class BaseTornadoClient(AsyncModbusClientMixin):
     def on_receive(self, *args):
         """
         On data recieve call back
+
         :param args: data received
         :return:
         """
@@ -89,6 +91,7 @@ class BaseTornadoClient(AsyncModbusClientMixin):
     def execute(self, request=None):
         """
         Executes a transaction
+
         :param request:
         :return:
         """
@@ -101,6 +104,7 @@ class BaseTornadoClient(AsyncModbusClientMixin):
     def _handle_response(self, reply, **kwargs):
         """
         Handle response received
+
         :param reply:
         :param kwargs:
         :return:
@@ -116,6 +120,7 @@ class BaseTornadoClient(AsyncModbusClientMixin):
     def _build_response(self, tid):
         """
         Builds a future response
+
         :param tid:
         :return:
         """
@@ -151,6 +156,7 @@ class BaseTornadoSerialClient(AsyncModbusSerialClientMixin):
         """
         Initializes BaseTornadoSerialClient.
         ioloop to be passed as part of kwargs ('ioloop')
+
         :param args:
         :param kwargs:
         """
@@ -170,6 +176,7 @@ class BaseTornadoSerialClient(AsyncModbusSerialClientMixin):
     def execute(self, request=None):
         """
         Executes a transaction
+
         :param request: Request to be written on to the bus
         :return:
         """
@@ -201,6 +208,7 @@ class BaseTornadoSerialClient(AsyncModbusSerialClientMixin):
     def _handle_response(self, reply, **kwargs):
         """
         Handles a received response and updates a future
+
         :param reply: Reply received
         :param kwargs:
         :return:
@@ -216,6 +224,7 @@ class BaseTornadoSerialClient(AsyncModbusSerialClientMixin):
     def _build_response(self, tid):
         """
         Prepare for a response, returns a future
+
         :param tid:
         :return: Future
         """
@@ -248,6 +257,7 @@ class SerialIOStream(BaseIOStream):
     def __init__(self, connection, *args, **kwargs):
         """
         Initializes Serial IO Stream
+
         :param connection: serial object
         :param args:
         :param kwargs:
@@ -258,6 +268,7 @@ class SerialIOStream(BaseIOStream):
     def fileno(self):
         """
         Returns serial fd
+
         :return:
         """
         return self.connection.fileno()
@@ -265,6 +276,7 @@ class SerialIOStream(BaseIOStream):
     def close_fd(self):
         """
         Closes a serial Fd
+
         :return:
         """
         if self.connection:
@@ -274,6 +286,7 @@ class SerialIOStream(BaseIOStream):
     def read_from_fd(self):
         """
         Reads from a fd
+
         :return:
         """
         try:
@@ -286,6 +299,7 @@ class SerialIOStream(BaseIOStream):
     def write_to_fd(self, data):
         """
         Writes to a fd
+
         :param data:
         :return:
         """
@@ -302,6 +316,7 @@ class AsyncModbusSerialClient(BaseTornadoSerialClient):
     def __init__(self, *args, **kwargs):
         """
         Initializes AsyncModbusSerialClient.
+
         :param args:
         :param kwargs:
         """
@@ -320,6 +335,7 @@ class AsyncModbusSerialClient(BaseTornadoSerialClient):
     def get_socket(self):
         """
         Creates Pyserial object
+
         :return: serial object
         """
         return Serial(port=self.port, **self.serial_settings)
@@ -347,6 +363,7 @@ class AsyncModbusSerialClient(BaseTornadoSerialClient):
     def execute(self, request):
         """
         Executes a transaction
+
         :param request: Request to be written on to the bus
         :return:
         """
@@ -445,6 +462,7 @@ class AsyncModbusSerialClient(BaseTornadoSerialClient):
     def _sendPacket(self, message, callback):
         """
         Sends packets on the bus with 3.5char delay between frames
+
         :param message: Message to be sent over the bus
         :return:
         """
@@ -481,6 +499,7 @@ class AsyncModbusTCPClient(BaseTornadoClient):
     def get_socket(self):
         """
         Creates socket object
+
         :return: socket
         """
         return socket.socket(family=socket.AF_INET, type=socket.SOCK_STREAM)

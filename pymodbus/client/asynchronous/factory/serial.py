@@ -15,6 +15,7 @@ LOGGER = logging.getLogger(__name__)
 def reactor_factory(port, framer, **kwargs):
     """
     Factory to create twisted serial asynchronous client
+
     :param port: Serial port
     :param framer: Modbus Framer
     :param kwargs:
@@ -59,6 +60,7 @@ def reactor_factory(port, framer, **kwargs):
 def io_loop_factory(port=None, framer=None, **kwargs):
     """
     Factory to create Tornado based asynchronous serial clients
+
     :param port:  Serial port
     :param framer: Modbus Framer
     :param kwargs:
@@ -82,6 +84,7 @@ def io_loop_factory(port=None, framer=None, **kwargs):
 def async_io_factory(port=None, framer=None, **kwargs):
     """
     Factory to create asyncio based asynchronous serial clients
+
     :param port:  Serial port
     :param framer: Modbus Framer
     :param kwargs: Serial port options
@@ -114,6 +117,7 @@ def async_io_factory(port=None, framer=None, **kwargs):
 def get_factory(scheduler):
     """
     Gets protocol factory based on the backend scheduler being used
+
     :param scheduler: REACTOR/IO_LOOP/ASYNC_IO
     :return:
     """

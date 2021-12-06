@@ -14,6 +14,7 @@ def reactor_factory(host="127.0.0.1", port=Defaults.Port, framer=None,
                     source_address=None, timeout=None, **kwargs):
     """
     Factory to create twisted udp asynchronous client
+
     :param host: Host IP address
     :param port: Port
     :param framer: Modbus Framer
@@ -29,6 +30,7 @@ def io_loop_factory(host="127.0.0.1", port=Defaults.Port, framer=None,
                    source_address=None, timeout=None, **kwargs):
     """
     Factory to create Tornado based asynchronous udp clients
+
     :param host: Host IP address
     :param port: Port
     :param framer: Modbus Framer
@@ -55,6 +57,7 @@ def io_loop_factory(host="127.0.0.1", port=Defaults.Port, framer=None,
 def async_io_factory(host="127.0.0.1", port=Defaults.Port, **kwargs):
     """
     Factory to create asyncio based asynchronous udp clients
+
     :param host: Host IP address
     :param port: Port
     :param framer: Modbus Framer
@@ -79,6 +82,7 @@ def async_io_factory(host="127.0.0.1", port=Defaults.Port, **kwargs):
 def get_factory(scheduler):
     """
     Gets protocol factory based on the backend scheduler being used
+
     :param scheduler: REACTOR/IO_LOOP/ASYNC_IO
     :return
     """

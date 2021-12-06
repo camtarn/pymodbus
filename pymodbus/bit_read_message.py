@@ -61,7 +61,7 @@ class ReadBitsRequestBase(ModbusRequest):
 
 
 class ReadBitsResponseBase(ModbusResponse):
-    ''' Base class for Messages responding to bit-reading values '''
+    ''' Base class for Messages responding to bit-reading values. The requested bits can be found in the .bits list. '''
 
     _rtu_byte_count_pos = 2
 
@@ -71,6 +71,8 @@ class ReadBitsResponseBase(ModbusResponse):
         :param values: The requested values to be returned
         '''
         ModbusResponse.__init__(self, **kwargs)
+
+        #: A list of booleans representing bit values
         self.bits = values or []
 
     def encode(self):
@@ -147,7 +149,7 @@ class ReadCoilsRequest(ReadBitsRequestBase):
         request is valid against the current datastore.
 
         :param context: The datastore to request from
-        :returns: The initializes response message, exception message otherwise
+        :returns: An initialized :py:class:`~pymodbus.register_read_message.ReadCoilsResponse`, or an :py:class:`~pymodbus.pdu.ExceptionResponse` if an error occurred
         '''
         if not (1 <= self.count <= 0x7d0):
             return self.doException(merror.IllegalValue)
@@ -169,6 +171,8 @@ class ReadCoilsResponse(ReadBitsResponseBase):
     remaining bits in the final data byte will be padded with zeros
     (toward the high order end of the byte). The Byte Count field specifies
     the quantity of complete bytes of data.
+
+    The requested coils can be found in boolean form in the .bits list.
     '''
     function_code = 1
 
@@ -206,7 +210,7 @@ class ReadDiscreteInputsRequest(ReadBitsRequestBase):
         request is valid against the current datastore.
 
         :param context: The datastore to request from
-        :returns: The initializes response message, exception message otherwise
+        :returns: An initialized :py:class:`~pymodbus.register_read_message.ReadDiscreteInputsResponse`, or an :py:class:`~pymodbus.pdu.ExceptionResponse` if an error occurred
         '''
         if not (1 <= self.count <= 0x7d0):
             return self.doException(merror.IllegalValue)
@@ -228,6 +232,8 @@ class ReadDiscreteInputsResponse(ReadBitsResponseBase):
     remaining bits in the final data byte will be padded with zeros
     (toward the high order end of the byte). The Byte Count field specifies
     the quantity of complete bytes of data.
+
+    The requested coils can be found in boolean form in the .bits list.
     '''
     function_code = 2
 

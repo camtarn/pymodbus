@@ -250,4 +250,5 @@ class ReadDiscreteInputsResponse(ReadBitsResponseBase):
 __all__ = [
     "ReadCoilsRequest", "ReadCoilsResponse",
     "ReadDiscreteInputsRequest", "ReadDiscreteInputsResponse",
+    "ReadBitsResponseBase",
 ]

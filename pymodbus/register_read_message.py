@@ -366,4 +366,5 @@ __all__ = [
     "ReadHoldingRegistersRequest", "ReadHoldingRegistersResponse",
     "ReadInputRegistersRequest", "ReadInputRegistersResponse",
     "ReadWriteMultipleRegistersRequest", "ReadWriteMultipleRegistersResponse",
+    "ReadRegistersResponseBase",
 ]
